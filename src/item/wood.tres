@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://d1yrwc7u3fv7i"]
+
+[ext_resource type="Script" path="res://src/item/item_type.gd" id="1_dy152"]
+[ext_resource type="Texture2D" uid="uid://c452l632h5qru" path="res://assets/wood.png" id="1_uvagm"]
+
+[resource]
+script = ExtResource("1_dy152")
+name = "wood"
+icon = ExtResource("1_uvagm")
+strength = 1
+connections = Array[int]([1, 2, 3, 4])

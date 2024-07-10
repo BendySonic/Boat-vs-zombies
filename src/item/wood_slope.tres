@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://cma132nl3pmce"]
+
+[ext_resource type="Texture2D" uid="uid://d3hr83kf0j77p" path="res://assets/wood_slope.png" id="1_es48h"]
+[ext_resource type="Script" path="res://src/item/item_type.gd" id="2_moabc"]
+
+[resource]
+script = ExtResource("2_moabc")
+name = "wood_slope"
+icon = ExtResource("1_es48h")
+strength = 1
+connections = Array[int]([2, 3])

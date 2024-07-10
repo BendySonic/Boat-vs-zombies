@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://djoxko0vjwphw"]
+
+[ext_resource type="Script" path="res://src/editor/editor.gd" id="1_moqma"]
+[ext_resource type="Texture2D" uid="uid://bocapxdvqvs7d" path="res://assets/grid_1.png" id="1_pjn60"]
+[ext_resource type="Texture2D" uid="uid://buutl0rn4mjwd" path="res://assets/grid_2.png" id="2_3h7vs"]
+[ext_resource type="Script" path="res://src/game/ship.gd" id="4_slgwe"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss0nq"]
+texture = ExtResource("1_pjn60")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evr7m"]
+texture = ExtResource("2_3h7vs")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2n0un"]
+tile_size = Vector2i(96, 96)
+sources/2 = SubResource("TileSetAtlasSource_ss0nq")
+sources/3 = SubResource("TileSetAtlasSource_evr7m")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqkh8"]
+content_margin_left = 50.0
+content_margin_top = 20.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.255659, 0.255659, 0.255659, 1)
+
+[node name="Editor" type="Node2D" node_paths=PackedStringArray("editor_items", "tile_map", "ship")]
+script = ExtResource("1_moqma")
+editor_items = NodePath("UI/Control/VBoxContainer/Panel/VBoxContainer/ScrollContainer/GridContainer")
+tile_map = NodePath("TileMap")
+ship = NodePath("Ship/Ship")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(24, 32)
+tile_set = SubResource("TileSet_2n0un")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 2, 0, 65537, 2, 0, 131074, 2, 0, 196611, 2, 0, 262148, 2, 0, 327685, 2, 0, 393222, 2, 0, 131072, 2, 0, 196609, 2, 0, 2, 2, 0, 4, 2, 0, 131076, 2, 0, 65541, 2, 0, 6, 2, 0, 131078, 2, 0, 196613, 2, 0, 262150, 2, 0, 262146, 2, 0, 327683, 2, 0, 262144, 2, 0, 327681, 2, 0, 393216, 2, 0, 393218, 2, 0, 393220, 2, 0, 327680, 3, 0, 262145, 3, 0, 393217, 3, 0, 327682, 3, 0, 196608, 3, 0, 131073, 3, 0, 65536, 3, 0, 1, 3, 0, 65539, 2, 0, 65538, 3, 0, 3, 3, 0, 65540, 3, 0, 131075, 3, 0, 196610, 3, 0, 262147, 3, 0, 196612, 3, 0, 131077, 3, 0, 5, 3, 0, 65542, 3, 0, 196614, 3, 0, 262149, 3, 0, 327684, 3, 0, 393219, 3, 0, 393221, 3, 0, 327686, 3, 0)
+
+[node name="Ship" type="CanvasLayer" parent="."]
+layer = 3
+follow_viewport_enabled = true
+
+[node name="Ship" type="Node2D" parent="Ship"]
+z_index = 2
+position = Vector2(24, 32)
+script = ExtResource("4_slgwe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 640)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.3
+
+[node name="Panel" type="PanelContainer" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqkh8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Menu" type="Button" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 45
+text = "Меню"
+
+[node name="Clear" type="Button" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 45
+text = "Очистить"
+
+[node name="Save" type="Button" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 45
+text = "Сoхр."
+
+[connection signal="mouse_entered" from="UI/Control/VBoxContainer/Panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Control/VBoxContainer/Panel" to="." method="_on_panel_mouse_exited"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]

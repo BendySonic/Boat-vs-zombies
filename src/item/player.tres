@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://4u610xkgf6b1"]
+
+[ext_resource type="Texture2D" uid="uid://btcnwsuxvaebn" path="res://assets/player.png" id="1_hrewo"]
+[ext_resource type="Script" path="res://src/item/item_type.gd" id="1_oxbkx"]
+
+[resource]
+script = ExtResource("1_oxbkx")
+name = "player"
+icon = ExtResource("1_hrewo")
+strength = 1
+connections = Array[int]([1, 2, 3, 4])
