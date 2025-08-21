@@ -1,2 +1,4 @@
-# bbft
- Build a boat for a treasure 2D game. Made with Godot Engine. Alpha
+# Boat vs. Zombies
+https://itsmebuzzy.itch.io/zombie-playground
+
+https://rutube.ru/video/e0ce2719516fbd6854c5efb038904fd5/
