@@ -1,0 +1,325 @@
+[gd_scene load_steps=28 format=3 uid="uid://ua4fjje6wvpn"]
+
+[ext_resource type="Script" path="res://src/menu/menu.gd" id="1_5x4bq"]
+[ext_resource type="Texture2D" uid="uid://d113vad3t5srl" path="res://assets/logo.png" id="2_nb7e2"]
+[ext_resource type="Texture2D" uid="uid://d4frayoolu8vq" path="res://assets/play.png" id="3_s73o8"]
+[ext_resource type="Texture2D" uid="uid://bxfm20khjs47q" path="res://assets/grabber.png" id="5_62a5w"]
+[ext_resource type="Texture2D" uid="uid://cow1li4kucgc" path="res://assets/settings.png" id="5_t3i66"]
+[ext_resource type="Script" path="res://src/menu/audio_slider.gd" id="6_aibvv"]
+[ext_resource type="Texture2D" uid="uid://bgp2vj3kh1cfk" path="res://assets/continue.png" id="6_fgk8q"]
+[ext_resource type="Texture2D" uid="uid://ddl4i1nemga61" path="res://assets/stone.png" id="8_3uaqs"]
+[ext_resource type="Texture2D" uid="uid://btcnwsuxvaebn" path="res://assets/player.png" id="9_m27ar"]
+[ext_resource type="Texture2D" uid="uid://c452l632h5qru" path="res://assets/wood.png" id="10_iixy4"]
+[ext_resource type="Texture2D" uid="uid://c758n02fte1y0" path="res://assets/spikes.png" id="11_ndx0o"]
+[ext_resource type="Texture2D" uid="uid://b0p8ns45110pq" path="res://assets/engine.png" id="12_vc6ql"]
+[ext_resource type="Texture2D" uid="uid://dtm4kstg7p5ap" path="res://assets/metal.png" id="13_uged8"]
+[ext_resource type="Texture2D" uid="uid://c5s0r8oxj5loc" path="res://assets/particle.png" id="14_sfhkh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bka5s"]
+content_margin_left = 50.0
+content_margin_top = 100.0
+content_margin_right = 50.0
+content_margin_bottom = 100.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lppwk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0t8rv"]
+font_size = 28
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pshdl"]
+color = Color(0.145068, 0.155149, 0.140044, 1)
+grow_begin = -10.0
+grow_end = -10.0
+thickness = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_sg3mi"]
+font_size = 28
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqe5l"]
+content_margin_right = 120.0
+content_margin_bottom = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2t52"]
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_x1hmq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(993, 443)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Engine:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(703, 309)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Metal:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1058, 168)]
+}
+
+[sub_resource type="Animation" id="Animation_hbc43"]
+resource_name = "float"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(2.37841, 0.450625, 1, 0.450625, 1),
+"update": 0,
+"values": [Vector2(993, 443), Vector2(993, 453), Vector2(993, 443), Vector2(993, 453), Vector2(993, 443)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Engine:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.13333, 2.3, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(703, 299), Vector2(703, 309), Vector2(703, 299), Vector2(703, 309), Vector2(703, 299)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Metal:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.83333, 3.5, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1058, 168), Vector2(1058, 158), Vector2(1058, 168), Vector2(1058, 158), Vector2(1058, 168)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7b3jd"]
+_data = {
+"RESET": SubResource("Animation_x1hmq"),
+"float": SubResource("Animation_hbc43")
+}
+
+[sub_resource type="Curve" id="Curve_rwerh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.139159, 0.966365), 1.29916, 1.29916, 0, 0, Vector2(0.378641, 0.646831), -3.2479, -3.2479, 0, 0, Vector2(0.9869, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7e3hg"]
+curve = SubResource("Curve_rwerh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vy5qf"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(150, 150, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.5
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_7e3hg")
+color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[node name="Menu" type="PanelContainer" node_paths=PackedStringArray("score", "settings", "menu")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5x4bq")
+score = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Score")
+settings = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Settings")
+menu = NodePath("HBoxContainer/PanelContainer/VBoxContainer/Menu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bka5s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 50
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_nb7e2")
+
+[node name="Menu" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Play" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lppwk")
+text = "Play"
+icon = ExtResource("3_s73o8")
+
+[node name="Settings" type="Button" parent="HBoxContainer/PanelContainer/VBoxContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lppwk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lppwk")
+text = "Settings"
+icon = ExtResource("5_t3i66")
+
+[node name="Settings" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Music" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_0t8rv")
+
+[node name="MusicSlider" type="HSlider" parent="HBoxContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("5_62a5w")
+theme_override_icons/grabber_highlight = ExtResource("5_62a5w")
+theme_override_styles/slider = SubResource("StyleBoxLine_pshdl")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("6_aibvv")
+bus_name = "Music"
+
+[node name="SFX" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+text = "SFX"
+label_settings = SubResource("LabelSettings_0t8rv")
+
+[node name="SFXSlider" type="HSlider" parent="HBoxContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("5_62a5w")
+theme_override_icons/grabber_highlight = ExtResource("5_62a5w")
+theme_override_styles/slider = SubResource("StyleBoxLine_pshdl")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("6_aibvv")
+bus_name = "SFX"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/Settings"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="TextureRect" type="TextureButton" parent="HBoxContainer/PanelContainer/VBoxContainer/Settings/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("6_fgk8q")
+stretch_mode = 0
+
+[node name="Score" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "High score: 100"
+label_settings = SubResource("LabelSettings_sg3mi")
+horizontal_alignment = 1
+
+[node name="Container" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gqe5l")
+
+[node name="Label" type="Label" parent="HBoxContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Fullscreen mode"
+label_settings = SubResource("LabelSettings_m2t52")
+horizontal_alignment = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(993, 443)
+rotation = -0.497825
+
+[node name="Stone" type="Sprite2D" parent="Node2D"]
+position = Vector2(1, 6)
+texture = ExtResource("8_3uaqs")
+
+[node name="Stone4" type="Sprite2D" parent="Node2D"]
+position = Vector2(1, 102)
+texture = ExtResource("9_m27ar")
+
+[node name="Stone2" type="Sprite2D" parent="Node2D"]
+position = Vector2(97, 6)
+texture = ExtResource("10_iixy4")
+
+[node name="Stone3" type="Sprite2D" parent="Node2D"]
+position = Vector2(-95, 6)
+texture = ExtResource("10_iixy4")
+
+[node name="Spikes" type="Sprite2D" parent="Node2D"]
+position = Vector2(1, -89)
+texture = ExtResource("11_ndx0o")
+
+[node name="Engine" type="Sprite2D" parent="."]
+position = Vector2(703, 309)
+rotation = -0.915554
+texture = ExtResource("12_vc6ql")
+
+[node name="Metal" type="Sprite2D" parent="."]
+position = Vector2(1058, 168)
+rotation = -0.281419
+texture = ExtResource("13_uged8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7b3jd")
+}
+
+[node name="SeaParticles" type="GPUParticles2D" parent="."]
+z_index = -2
+position = Vector2(869, 371)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_vy5qf")
+texture = ExtResource("14_sfhkh")
+lifetime = 6.0
+
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Menu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/PanelContainer/VBoxContainer/Settings/MarginContainer/TextureRect" to="." method="_on_texture_rect_pressed"]

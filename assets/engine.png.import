@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/engine.png-d1610c425be82d5f23f8efc2a524d8bb.c
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

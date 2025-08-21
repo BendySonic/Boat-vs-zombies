@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2rbcwm6qqve1"]
+
+[ext_resource type="Texture2D" uid="uid://jboh1ws0q711" path="res://assets/health.png" id="1_dx1ai"]
+[ext_resource type="Script" path="res://src/game/heal.gd" id="2_sja7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0hf5"]
+size = Vector2(120, 120)
+
+[node name="Heal" type="Sprite2D"]
+modulate = Color(2.5028e-06, 0.825504, 0.338674, 1)
+texture = ExtResource("1_dx1ai")
+script = ExtResource("2_sja7h")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_c0hf5")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

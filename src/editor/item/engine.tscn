@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://blghe4q0prtxj"]
+
+[ext_resource type="Script" path="res://src/editor/item/engine.gd" id="1_3nta0"]
+[ext_resource type="Texture2D" uid="uid://b0p8ns45110pq" path="res://assets/engine.png" id="2_5m7sl"]
+[ext_resource type="Texture2D" uid="uid://c5s0r8oxj5loc" path="res://assets/particle.png" id="3_7q5ek"]
+[ext_resource type="AudioStream" uid="uid://fijmo87eolk1" path="res://assets/music/Wood break 1.mp3" id="4_csv3i"]
+[ext_resource type="AudioStream" uid="uid://do48n01demloh" path="res://assets/music/Wood break 2.mp3" id="5_npe8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5p1h"]
+size = Vector2(48, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8162i"]
+size = Vector2(58, 106)
+
+[sub_resource type="Curve" id="Curve_63vgx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.139159, 0.966365), 1.29916, 1.29916, 0, 0, Vector2(0.378641, 0.646831), -3.2479, -3.2479, 0, 0, Vector2(0.9869, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7e3hg"]
+curve = SubResource("Curve_63vgx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wh3sn"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 20, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.5
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_7e3hg")
+color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[node name="Engine" type="CollisionShape2D" node_paths=PackedStringArray("sprite", "hitbox")]
+shape = SubResource("RectangleShape2D_y5p1h")
+script = ExtResource("1_3nta0")
+sprite = NodePath("Sprite2D")
+hitbox = NodePath("HitBox")
+strength = 1
+connections = Array[int]([2])
+visual_name = "Engine"
+rare_max_count = 1
+epic_max_count = 1
+id = "engine"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5m7sl")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_8162i")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -2
+position = Vector2(21, 17)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_wh3sn")
+texture = ExtResource("3_7q5ek")
+
+[node name="Break1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_csv3i")
+volume_db = -12.0
+bus = &"SFX"
+
+[node name="Break2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_npe8x")
+volume_db = -12.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]

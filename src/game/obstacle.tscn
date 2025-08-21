@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/game/obstacle.gd" id="1_ynul4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mogpx"]
-size = Vector2(130, 130)
+size = Vector2(40, 40)
 
 [node name="Obstacle" type="StaticBody2D" groups=["obstacle"]]
 script = ExtResource("1_ynul4")
@@ -11,4 +11,5 @@ script = ExtResource("1_ynul4")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_mogpx")

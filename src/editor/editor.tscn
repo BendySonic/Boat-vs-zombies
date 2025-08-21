@@ -1,9 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://djoxko0vjwphw"]
+[gd_scene load_steps=22 format=3 uid="uid://djoxko0vjwphw"]
 
 [ext_resource type="Script" path="res://src/editor/editor.gd" id="1_moqma"]
 [ext_resource type="Texture2D" uid="uid://bocapxdvqvs7d" path="res://assets/grid_1.png" id="1_pjn60"]
 [ext_resource type="Texture2D" uid="uid://buutl0rn4mjwd" path="res://assets/grid_2.png" id="2_3h7vs"]
+[ext_resource type="Script" path="res://src/editor/tile_map.gd" id="4_na4qa"]
 [ext_resource type="Script" path="res://src/game/ship.gd" id="4_slgwe"]
+[ext_resource type="Texture2D" uid="uid://cf1qmqpuar87s" path="res://assets/rotate.png" id="6_heeuv"]
+[ext_resource type="Texture2D" uid="uid://dwa42gsrnh3gh" path="res://assets/delete.png" id="7_roon5"]
+[ext_resource type="Texture2D" uid="uid://d4frayoolu8vq" path="res://assets/play.png" id="8_2n2rp"]
+[ext_resource type="Texture2D" uid="uid://cttk75y66qt1c" path="res://assets/play_disabled.png" id="10_egjmu"]
+[ext_resource type="Texture2D" uid="uid://btcnwsuxvaebn" path="res://assets/player.png" id="10_yosrr"]
+[ext_resource type="Texture2D" uid="uid://c452l632h5qru" path="res://assets/wood.png" id="11_gvok7"]
+[ext_resource type="Texture2D" uid="uid://b0p8ns45110pq" path="res://assets/engine.png" id="12_kgcxg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_n64p2"]
+size = Vector2(9000, 9000)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss0nq"]
 texture = ExtResource("1_pjn60")
@@ -20,27 +31,70 @@ tile_size = Vector2i(96, 96)
 sources/2 = SubResource("TileSetAtlasSource_ss0nq")
 sources/3 = SubResource("TileSetAtlasSource_evr7m")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqkh8"]
-content_margin_left = 50.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlon4"]
+content_margin_left = 20.0
 content_margin_top = 20.0
-content_margin_right = 50.0
-content_margin_bottom = 50.0
-bg_color = Color(0.255659, 0.255659, 0.255659, 1)
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 
-[node name="Editor" type="Node2D" node_paths=PackedStringArray("editor_items", "tile_map", "ship")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqkh8"]
+content_margin_left = 20.0
+content_margin_top = 50.0
+content_margin_right = 20.0
+content_margin_bottom = 50.0
+bg_color = Color(0.254902, 0.254902, 0.254902, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31upu"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwira"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_1gxfi"]
+line_spacing = 0.0
+font_size = 20
+
+[node name="Editor" type="Node2D" node_paths=PackedStringArray("editor_items", "tile_map", "ship", "play_button", "tap_1", "tap_2", "tap_3", "tap_4", "tap_5", "tap_6", "example", "help", "info")]
 script = ExtResource("1_moqma")
-editor_items = NodePath("UI/Control/VBoxContainer/Panel/VBoxContainer/ScrollContainer/GridContainer")
+editor_items = NodePath("UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/ScrollContainer/EditorItems")
 tile_map = NodePath("TileMap")
 ship = NodePath("Ship/Ship")
+play_button = NodePath("UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer2/Play")
+tap_1 = NodePath("Tutorial/MarginContainer/Tap1")
+tap_2 = NodePath("Tutorial/MarginContainer/Tap2")
+tap_3 = NodePath("Tutorial/MarginContainer/Tap3")
+tap_4 = NodePath("Tutorial/MarginContainer/Tap4")
+tap_5 = NodePath("Tutorial/MarginContainer/Tap5")
+tap_6 = NodePath("Tutorial/MarginContainer/Tap6")
+example = NodePath("Ship/Example")
+help = NodePath("UI/Control/VBoxContainer/Panel2/VBoxContainer/Help")
+info = NodePath("UI/Control/VBoxContainer/Panel2/VBoxContainer/Info")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.0470588, 0.0470588, 0.0470588, 1)
+z_index = -1
+position = Vector2(709, 547)
+mesh = SubResource("QuadMesh_n64p2")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(24, 32)
 tile_set = SubResource("TileSet_2n0un")
 format = 2
-layer_0/tile_data = PackedInt32Array(0, 2, 0, 65537, 2, 0, 131074, 2, 0, 196611, 2, 0, 262148, 2, 0, 327685, 2, 0, 393222, 2, 0, 131072, 2, 0, 196609, 2, 0, 2, 2, 0, 4, 2, 0, 131076, 2, 0, 65541, 2, 0, 6, 2, 0, 131078, 2, 0, 196613, 2, 0, 262150, 2, 0, 262146, 2, 0, 327683, 2, 0, 262144, 2, 0, 327681, 2, 0, 393216, 2, 0, 393218, 2, 0, 393220, 2, 0, 327680, 3, 0, 262145, 3, 0, 393217, 3, 0, 327682, 3, 0, 196608, 3, 0, 131073, 3, 0, 65536, 3, 0, 1, 3, 0, 65539, 2, 0, 65538, 3, 0, 3, 3, 0, 65540, 3, 0, 131075, 3, 0, 196610, 3, 0, 262147, 3, 0, 196612, 3, 0, 131077, 3, 0, 5, 3, 0, 65542, 3, 0, 196614, 3, 0, 262149, 3, 0, 327684, 3, 0, 393219, 3, 0, 393221, 3, 0, 327686, 3, 0)
+script = ExtResource("4_na4qa")
 
 [node name="Ship" type="CanvasLayer" parent="."]
-layer = 3
 follow_viewport_enabled = true
 
 [node name="Ship" type="Node2D" parent="Ship"]
@@ -48,10 +102,49 @@ z_index = 2
 position = Vector2(24, 32)
 script = ExtResource("4_slgwe")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(360, 640)
+[node name="Example" type="Node2D" parent="Ship"]
+modulate = Color(1, 1, 1, 0.258824)
+position = Vector2(24, 32)
+
+[node name="Stone4" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(720, 720)
+texture = ExtResource("10_yosrr")
+
+[node name="Stone6" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(816, 720)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone7" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(624, 720)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone11" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(624, 816)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone12" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(816, 816)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone8" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(624, 624)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone9" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(720, 624)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone10" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(816, 624)
+texture = ExtResource("11_gvok7")
+
+[node name="Stone5" type="Sprite2D" parent="Ship/Example"]
+position = Vector2(720, 816)
+rotation = 4.71239
+texture = ExtResource("12_kgcxg")
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
@@ -60,62 +153,318 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control"]
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel2" type="PanelContainer" parent="UI/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hlon4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/VBoxContainer/Panel2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Info" type="RichTextLabel" parent="UI/Control/VBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[b]Parts: 0[b]"
+fit_content = true
+scroll_active = false
+
+[node name="MenuButton" type="Button" parent="UI/Control/VBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Menu"
+
+[node name="Help" type="RichTextLabel" parent="UI/Control/VBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/italics_font_size = 15
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b][color=]Help:[/color][/b]
+
+[i]Build: Left Mouse Button
+Erase: Right Mouse Button
+Zoom: Mouse Wheel or Keyboard (Plus and Minus)
+Drag: Middle Button or Keyboard (Arrows and Space)[/i]
+
+Build a boat to defence
+against wave of 
+sea zombies
+
+"
+fit_content = true
+scroll_active = false
 
 [node name="Container" type="Container" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
 
 [node name="Panel" type="PanelContainer" parent="UI/Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_gqkh8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/VBoxContainer/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 30
 
-[node name="GridContainer" type="GridContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Rotate" type="TextureButton" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("6_heeuv")
+stretch_mode = 5
+
+[node name="Delete" type="TextureButton" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_roon5")
+stretch_mode = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_31upu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer"]
+[node name="EditorItems" type="VBoxContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("8_2n2rp")
+texture_disabled = ExtResource("10_egjmu")
+stretch_mode = 5
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 70
+
+[node name="Tap1" type="PanelContainer" parent="Tutorial/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwira")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/MarginContainer/Tap1"]
 layout_mode = 2
 
-[node name="Menu" type="Button" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap1/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 45
-text = "Меню"
+theme_override_constants/separation = 20
 
-[node name="Clear" type="Button" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Tap1/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-theme_override_font_sizes/font_size = 45
-text = "Очистить"
+texture = ExtResource("10_yosrr")
+expand_mode = 3
 
-[node name="Save" type="Button" parent="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap1/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
-theme_override_font_sizes/font_size = 45
-text = "Сoхр."
+text = "Click to player block
+for choose"
+label_settings = SubResource("LabelSettings_1gxfi")
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap1/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap1/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stay alive as long as
+possible. If zombie destroy
+this block, then you lost."
+label_settings = SubResource("LabelSettings_1gxfi")
+horizontal_alignment = 1
+
+[node name="Tap2" type="PanelContainer" parent="Tutorial/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwira")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap2/HBoxContainer"]
+layout_mode = 2
+text = "Left click on grid for building"
+label_settings = SubResource("LabelSettings_1gxfi")
+
+[node name="Tap3" type="PanelContainer" parent="Tutorial/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwira")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/MarginContainer/Tap3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Tap3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_gvok7")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Click to wood block
+for choose"
+label_settings = SubResource("LabelSettings_1gxfi")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap3/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wood block will defend
+you against zombies"
+label_settings = SubResource("LabelSettings_1gxfi")
+horizontal_alignment = 1
+
+[node name="Tap4" type="PanelContainer" parent="Tutorial/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwira")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/MarginContainer/Tap4"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Tap4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_kgcxg")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Click to engine block
+for choose
+"
+label_settings = SubResource("LabelSettings_1gxfi")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap4/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap4/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Engine block need you to
+ride you boat.
+"
+label_settings = SubResource("LabelSettings_1gxfi")
+horizontal_alignment = 1
+
+[node name="Tap5" type="PanelContainer" parent="Tutorial/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwira")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap5"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Tap5/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_heeuv")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap5/HBoxContainer"]
+layout_mode = 2
+text = "Click to rotate engine"
+label_settings = SubResource("LabelSettings_1gxfi")
+
+[node name="Tap6" type="PanelContainer" parent="Tutorial/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwira")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Tap6"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Tap6/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_2n2rp")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Tap6/HBoxContainer"]
+layout_mode = 2
+text = "Click to play when you are ready"
+label_settings = SubResource("LabelSettings_1gxfi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1001, 593)
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel2/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="mouse_entered" from="UI/Control/VBoxContainer/Panel" to="." method="_on_panel_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Control/VBoxContainer/Panel" to="." method="_on_panel_mouse_exited"]
-[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Clear" to="." method="_on_clear_pressed"]
-[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer/Rotate" to="." method="_on_rotate_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="UI/Control/VBoxContainer/Panel/VBoxContainer/HBoxContainer/HBoxContainer2/Play" to="." method="_on_play_pressed"]

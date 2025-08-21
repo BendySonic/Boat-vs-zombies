@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://bryxnuk5onsd2"]
+
+[ext_resource type="Script" path="res://src/game/enemies/enemy.gd" id="1_py3u1"]
+[ext_resource type="Texture2D" uid="uid://c5s0r8oxj5loc" path="res://assets/particle.png" id="2_du28a"]
+[ext_resource type="Material" uid="uid://dv7m3pscemae4" path="res://src/game/enemies/enemy.tres" id="3_62kb7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bhpe1"]
+radius = 60.0
+height = 120.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcl81"]
+size = Vector2(70, 70)
+
+[sub_resource type="Curve" id="Curve_63vgx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.139159, 0.966365), 1.29916, 1.29916, 0, 0, Vector2(0.378641, 0.646831), -3.2479, -3.2479, 0, 0, Vector2(0.9869, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7e3hg"]
+curve = SubResource("Curve_63vgx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wh3sn"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 20, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.5
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_7e3hg")
+color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[node name="Fast" type="RigidBody2D" node_paths=PackedStringArray("crash_particles", "water_particles", "visuals", "hitbox_timer") groups=["obstacle"]]
+mass = 0.001
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_py3u1")
+crash_particles = NodePath("CrashParticles")
+water_particles = NodePath("WaterParticles")
+visuals = NodePath("Visuals")
+hitbox_timer = NodePath("HitBoxTimer")
+speed = 700
+strength = 5
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals"]
+modulate = Color(1, 0.206095, 0.21185, 1)
+mesh = SubResource("SphereMesh_bhpe1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vcl81")
+
+[node name="WaterParticles" type="GPUParticles2D" parent="."]
+z_index = -2
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_wh3sn")
+texture = ExtResource("2_du28a")
+lifetime = 1.5
+
+[node name="CrashParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0.622238, 0.554142, 1)
+emitting = false
+amount = 3
+process_material = ExtResource("3_62kb7")
+texture = ExtResource("2_du28a")
+lifetime = 0.2
+one_shot = true
+collision_base_size = 0.0
+
+[node name="HitBoxTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="HitBoxTimer" to="." method="_on_hit_box_timer_timeout"]

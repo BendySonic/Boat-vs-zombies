@@ -1,0 +1,487 @@
+[gd_resource type="Resource" script_class="Waves" load_steps=105 format=3 uid="uid://n7nghj0324m7"]
+
+[ext_resource type="Script" path="res://src/game/waves/waves.gd" id="1_bxog0"]
+[ext_resource type="Script" path="res://src/game/waves/wave.gd" id="2_wq0hh"]
+[ext_resource type="Script" path="res://src/game/waves/group.gd" id="3_hnyss"]
+[ext_resource type="PackedScene" uid="uid://dqylx6ibv50wx" path="res://src/game/enemies/enemy.tscn" id="4_ul344"]
+[ext_resource type="PackedScene" uid="uid://u6ykmeeo28ri" path="res://src/game/enemies/fast.tscn" id="5_hq1l5"]
+[ext_resource type="PackedScene" uid="uid://c4m0iuyvmk1ot" path="res://src/game/enemies/tank.tscn" id="6_ju54x"]
+[ext_resource type="PackedScene" uid="uid://bud3am1pgj3vf" path="res://src/game/enemies/sand.tscn" id="7_ulplt"]
+[ext_resource type="PackedScene" uid="uid://c86t3dfvvlid1" path="res://src/game/enemies/explosive.tscn" id="8_lijp6"]
+[ext_resource type="PackedScene" uid="uid://ctnybp37csvsg" path="res://src/game/enemies/tank_sand.tscn" id="9_7xvx2"]
+[ext_resource type="PackedScene" uid="uid://b6uyxye7frm5c" path="res://src/game/enemies/the_king.tscn" id="10_xbx8n"]
+[ext_resource type="PackedScene" uid="uid://bryxnuk5onsd2" path="res://src/game/enemies/red.tscn" id="11_b333b"]
+[ext_resource type="PackedScene" uid="uid://c13bhqnuvgk77" path="res://src/game/enemies/gargantua.tscn" id="12_88ugl"]
+[ext_resource type="PackedScene" uid="uid://bq2131cg6ya2m" path="res://src/game/enemies/ice.tscn" id="13_ddfx6"]
+[ext_resource type="PackedScene" uid="uid://bob23hadkk3q4" path="res://src/game/enemies/tank_ice.tscn" id="14_w5nh2"]
+
+[sub_resource type="Resource" id="Resource_h7t5y"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 8
+
+[sub_resource type="Resource" id="Resource_g1ojv"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_h7t5y")])
+wave_text = "Wave 1"
+
+[sub_resource type="Resource" id="Resource_22pb1"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 16
+
+[sub_resource type="Resource" id="Resource_4k0jy"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_22pb1")])
+wave_text = "Wave 2"
+
+[sub_resource type="Resource" id="Resource_364mt"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 10
+
+[sub_resource type="Resource" id="Resource_e358c"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 10
+
+[sub_resource type="Resource" id="Resource_biy3o"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_364mt"), SubResource("Resource_e358c")])
+wave_text = "Wave 3
+Fast zombies"
+
+[sub_resource type="Resource" id="Resource_ie751"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 32
+
+[sub_resource type="Resource" id="Resource_r2ut0"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_ie751")])
+wave_text = "Special wave
+A huge wave of zombies is approaching..."
+
+[sub_resource type="Resource" id="Resource_vq7g8"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("6_ju54x")
+count = 1
+
+[sub_resource type="Resource" id="Resource_66tgv"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 15
+
+[sub_resource type="Resource" id="Resource_wcmor"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 5
+
+[sub_resource type="Resource" id="Resource_h5mb5"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_vq7g8"), SubResource("Resource_66tgv"), SubResource("Resource_wcmor")])
+wave_text = "Boss rush! 
+Tank zombie"
+
+[sub_resource type="Resource" id="Resource_1pan8"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 5
+
+[sub_resource type="Resource" id="Resource_jo3fw"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 5
+
+[sub_resource type="Resource" id="Resource_6keur"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_1pan8"), SubResource("Resource_jo3fw")])
+wave_text = "Wave 6
+Sand zombies"
+
+[sub_resource type="Resource" id="Resource_0oell"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 50
+
+[sub_resource type="Resource" id="Resource_par0j"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_0oell")])
+wave_text = "Special wave
+A huge wave of zombies is approaching..."
+
+[sub_resource type="Resource" id="Resource_0xj6h"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 3
+
+[sub_resource type="Resource" id="Resource_l6cjf"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 2
+
+[sub_resource type="Resource" id="Resource_iotq8"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 3
+
+[sub_resource type="Resource" id="Resource_6wrqf"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_0xj6h"), SubResource("Resource_l6cjf"), SubResource("Resource_iotq8")])
+wave_text = "Wave 8"
+
+[sub_resource type="Resource" id="Resource_5hlob"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 4
+
+[sub_resource type="Resource" id="Resource_673ee"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 10
+
+[sub_resource type="Resource" id="Resource_pvgcp"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_5hlob"), SubResource("Resource_673ee")])
+wave_text = "Wave 9
+Explosive zombies"
+
+[sub_resource type="Resource" id="Resource_88hxf"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("9_7xvx2")
+count = 1
+
+[sub_resource type="Resource" id="Resource_7718f"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 10
+
+[sub_resource type="Resource" id="Resource_cfn80"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 1
+
+[sub_resource type="Resource" id="Resource_wgcon"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_88hxf"), SubResource("Resource_7718f"), SubResource("Resource_cfn80")])
+wave_text = "Boss rush!
+Tank sand zombie"
+
+[sub_resource type="Resource" id="Resource_wc4cf"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 8
+
+[sub_resource type="Resource" id="Resource_8usg6"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_wc4cf")])
+wave_text = "Wave 11"
+
+[sub_resource type="Resource" id="Resource_xx0i3"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 5
+
+[sub_resource type="Resource" id="Resource_pjrac"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 5
+
+[sub_resource type="Resource" id="Resource_sajfc"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 5
+
+[sub_resource type="Resource" id="Resource_45dxo"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 2
+
+[sub_resource type="Resource" id="Resource_ss73i"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_xx0i3"), SubResource("Resource_pjrac"), SubResource("Resource_sajfc"), SubResource("Resource_45dxo")])
+wave_text = "Wave 12"
+
+[sub_resource type="Resource" id="Resource_jpd6x"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 8
+
+[sub_resource type="Resource" id="Resource_odf04"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_jpd6x")])
+wave_text = "Special wave
+Explosive zombies"
+
+[sub_resource type="Resource" id="Resource_f7jrd"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 20
+
+[sub_resource type="Resource" id="Resource_mir7u"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 20
+
+[sub_resource type="Resource" id="Resource_wpnn1"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_f7jrd"), SubResource("Resource_mir7u")])
+wave_text = "Wave 14
+"
+
+[sub_resource type="Resource" id="Resource_e1v2b"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("10_xbx8n")
+count = 1
+
+[sub_resource type="Resource" id="Resource_jcdp3"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 20
+
+[sub_resource type="Resource" id="Resource_nhpqg"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 20
+
+[sub_resource type="Resource" id="Resource_j6pfp"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_e1v2b"), SubResource("Resource_jcdp3"), SubResource("Resource_nhpqg")])
+wave_text = "Boss rush!
+The king"
+
+[sub_resource type="Resource" id="Resource_hs632"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 10
+
+[sub_resource type="Resource" id="Resource_tv4eq"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_gc7a1"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 10
+
+[sub_resource type="Resource" id="Resource_y0ag4"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_hs632"), SubResource("Resource_tv4eq"), SubResource("Resource_gc7a1")])
+wave_text = "Wave 16
+Red zombies"
+
+[sub_resource type="Resource" id="Resource_pph1u"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 10
+
+[sub_resource type="Resource" id="Resource_hf5tt"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 10
+
+[sub_resource type="Resource" id="Resource_og235"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 30
+
+[sub_resource type="Resource" id="Resource_08q2k"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_1ts4s"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_pph1u"), SubResource("Resource_hf5tt"), SubResource("Resource_og235"), SubResource("Resource_08q2k")])
+wave_text = "Special wave
+A huge wave of zombies is approaching..."
+
+[sub_resource type="Resource" id="Resource_t0cdo"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 20
+
+[sub_resource type="Resource" id="Resource_aacdl"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_t0cdo")])
+wave_text = "Special wave
+Red zombie's wave"
+
+[sub_resource type="Resource" id="Resource_35gc0"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 10
+
+[sub_resource type="Resource" id="Resource_afvv5"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 10
+
+[sub_resource type="Resource" id="Resource_8m0fk"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_35gc0"), SubResource("Resource_afvv5")])
+wave_text = "Wave 19"
+
+[sub_resource type="Resource" id="Resource_6j415"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("12_88ugl")
+count = 1
+
+[sub_resource type="Resource" id="Resource_j30lq"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 5
+
+[sub_resource type="Resource" id="Resource_tdnnl"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 5
+
+[sub_resource type="Resource" id="Resource_0yfnb"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_8ca64"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_6j415"), SubResource("Resource_j30lq"), SubResource("Resource_tdnnl"), SubResource("Resource_0yfnb")])
+wave_text = "Boss rush!
+Gargantua"
+
+[sub_resource type="Resource" id="Resource_3ddug"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 20
+
+[sub_resource type="Resource" id="Resource_c4q8c"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_bybfr"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_3ddug"), SubResource("Resource_c4q8c")])
+wave_text = "Wave 21"
+
+[sub_resource type="Resource" id="Resource_c5frg"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 10
+
+[sub_resource type="Resource" id="Resource_1t6d7"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 10
+
+[sub_resource type="Resource" id="Resource_hmn3c"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("13_ddfx6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_o1ih6"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_c5frg"), SubResource("Resource_1t6d7"), SubResource("Resource_hmn3c")])
+wave_text = "Wave 22
+Ice zombies"
+
+[sub_resource type="Resource" id="Resource_tgpso"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 5
+
+[sub_resource type="Resource" id="Resource_n004f"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 30
+
+[sub_resource type="Resource" id="Resource_u33ks"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 5
+
+[sub_resource type="Resource" id="Resource_8qoc8"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("13_ddfx6")
+count = 10
+
+[sub_resource type="Resource" id="Resource_df5hu"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_tgpso"), SubResource("Resource_n004f"), SubResource("Resource_u33ks"), SubResource("Resource_8qoc8")])
+wave_text = "Special wave
+A huge wave of zombies is approaching..."
+
+[sub_resource type="Resource" id="Resource_3ch1s"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("13_ddfx6")
+count = 10
+
+[sub_resource type="Resource" id="Resource_aua4j"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("7_ulplt")
+count = 15
+
+[sub_resource type="Resource" id="Resource_wvj4b"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_3ch1s"), SubResource("Resource_aua4j")])
+wave_text = "Wave 24"
+
+[sub_resource type="Resource" id="Resource_atqgs"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("13_ddfx6")
+count = 10
+
+[sub_resource type="Resource" id="Resource_xq86m"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("4_ul344")
+count = 5
+
+[sub_resource type="Resource" id="Resource_shlw2"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 2
+
+[sub_resource type="Resource" id="Resource_qjve2"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("14_w5nh2")
+count = 1
+
+[sub_resource type="Resource" id="Resource_itx13"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 5
+
+[sub_resource type="Resource" id="Resource_pqj7s"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_atqgs"), SubResource("Resource_xq86m"), SubResource("Resource_shlw2"), SubResource("Resource_qjve2"), SubResource("Resource_itx13")])
+wave_text = "Boss rush!
+Tank ice zombie"
+
+[sub_resource type="Resource" id="Resource_ho1ny"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("11_b333b")
+count = 50
+
+[sub_resource type="Resource" id="Resource_vje8w"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("8_lijp6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_17b1y"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("13_ddfx6")
+count = 5
+
+[sub_resource type="Resource" id="Resource_kgmj7"]
+script = ExtResource("3_hnyss")
+enemy_type = ExtResource("5_hq1l5")
+count = 5
+
+[sub_resource type="Resource" id="Resource_u6p58"]
+script = ExtResource("2_wq0hh")
+wave = Array[ExtResource("3_hnyss")]([SubResource("Resource_ho1ny"), SubResource("Resource_vje8w"), SubResource("Resource_17b1y"), SubResource("Resource_kgmj7")])
+wave_text = "Final wave"
+
+[resource]
+script = ExtResource("1_bxog0")
+waves = Array[ExtResource("2_wq0hh")]([SubResource("Resource_g1ojv"), SubResource("Resource_4k0jy"), SubResource("Resource_biy3o"), SubResource("Resource_r2ut0"), SubResource("Resource_h5mb5"), SubResource("Resource_6keur"), SubResource("Resource_par0j"), SubResource("Resource_6wrqf"), SubResource("Resource_pvgcp"), SubResource("Resource_wgcon"), SubResource("Resource_8usg6"), SubResource("Resource_ss73i"), SubResource("Resource_odf04"), SubResource("Resource_wpnn1"), SubResource("Resource_j6pfp"), SubResource("Resource_y0ag4"), SubResource("Resource_1ts4s"), SubResource("Resource_aacdl"), SubResource("Resource_8m0fk"), SubResource("Resource_8ca64"), SubResource("Resource_bybfr"), SubResource("Resource_o1ih6"), SubResource("Resource_df5hu"), SubResource("Resource_wvj4b"), SubResource("Resource_pqj7s"), SubResource("Resource_u6p58")])

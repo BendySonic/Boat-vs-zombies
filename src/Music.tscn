@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://caib5vjpccda"]
+
+[ext_resource type="AudioStream" uid="uid://cng2tf6x2mp60" path="res://assets/music/Pizza Tower - War.ogg" id="1_jpr1e"]
+[ext_resource type="Script" path="res://src/music.gd" id="1_sgcce"]
+[ext_resource type="AudioStream" uid="uid://bclgiej25oa5v" path="res://assets/music/Fnaf doom - Foxy strike.ogg" id="2_lnoyw"]
+[ext_resource type="AudioStream" uid="uid://cvnxkmotenlub" path="res://assets/music/Grease Monkeys.mp3" id="4_fixl4"]
+[ext_resource type="AudioStream" uid="uid://bleeyv0gf75es" path="res://assets/music/Start.mp3" id="5_casxc"]
+[ext_resource type="AudioStream" uid="uid://f4ilcsy8thy2" path="res://assets/music/Cowboy song.mp3" id="6_1ubso"]
+[ext_resource type="AudioStream" uid="uid://cm8a2sfrj66a7" path="res://assets/music/Menu.mp3" id="6_afcaj"]
+
+[node name="Music" type="Node2D"]
+script = ExtResource("1_sgcce")
+
+[node name="Main1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_jpr1e")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="Main2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lnoyw")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="Main3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fixl4")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_casxc")
+bus = &"Music"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1ubso")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_afcaj")
+volume_db = -10.0
+bus = &"Music"
+
+[connection signal="finished" from="Main1" to="." method="_on_main_finished"]
+[connection signal="finished" from="Main2" to="." method="_on_main_finished"]
+[connection signal="finished" from="Main3" to="." method="_on_main_finished"]
+[connection signal="finished" from="GameOver" to="." method="_on_main_finished"]
+[connection signal="finished" from="Menu" to="." method="_on_main_finished"]

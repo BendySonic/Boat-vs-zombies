@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/wood_slope.png-8a6d9812a9069391c875d75dc68f68
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

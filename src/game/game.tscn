@@ -1,52 +1,398 @@
-[gd_scene load_steps=9 format=3 uid="uid://bub3vemooouqw"]
+[gd_scene load_steps=50 format=4 uid="uid://bub3vemooouqw"]
 
 [ext_resource type="Script" path="res://src/game/game.gd" id="1_lqwsb"]
+[ext_resource type="Resource" uid="uid://n7nghj0324m7" path="res://src/game/waves/waves.tres" id="2_a0mvw"]
 [ext_resource type="Script" path="res://src/game/ship.gd" id="2_ng08c"]
-[ext_resource type="PackedScene" uid="uid://bqya1v3hc6j8n" path="res://src/game/obstacle.tscn" id="3_777bt"]
-[ext_resource type="Texture2D" uid="uid://bahnejyy84eib" path="res://assets/editor_item.png" id="4_8v7wk"]
-[ext_resource type="PackedScene" uid="uid://b56xwe71si578" path="res://src/zones/zone_0.tscn" id="5_mx5he"]
+[ext_resource type="Texture2D" uid="uid://dgll710l5l0vd" path="res://assets/timer.png" id="3_wrqe7"]
+[ext_resource type="Texture2D" uid="uid://bocapxdvqvs7d" path="res://assets/grid_1.png" id="3_wy52q"]
+[ext_resource type="Texture2D" uid="uid://d1l84ae86jnyr" path="res://assets/grid_4.png" id="4_lmcrw"]
+[ext_resource type="Texture2D" uid="uid://c5s0r8oxj5loc" path="res://assets/particle.png" id="6_tj1vd"]
+[ext_resource type="Texture2D" uid="uid://cn5nu0lf1sjrg" path="res://assets/hp.png" id="8_b580b"]
+[ext_resource type="PackedScene" uid="uid://5xelik0mfram" path="res://src/game/reward.tscn" id="9_e8ll6"]
+[ext_resource type="Texture2D" uid="uid://bxfm20khjs47q" path="res://assets/grabber.png" id="9_kjt1v"]
+[ext_resource type="Script" path="res://src/menu/audio_slider.gd" id="10_57g0s"]
+[ext_resource type="Texture2D" uid="uid://b7r1ef5vqkmfu" path="res://assets/up.png" id="10_fciqf"]
+[ext_resource type="Texture2D" uid="uid://bgp2vj3kh1cfk" path="res://assets/continue.png" id="11_mu83j"]
+[ext_resource type="Texture2D" uid="uid://cil6ytly7wcbm" path="res://assets/down.png" id="11_qawlb"]
+[ext_resource type="Texture2D" uid="uid://dlna4dxoxx6mf" path="res://assets/wasd.png" id="13_0tx55"]
+[ext_resource type="Texture2D" uid="uid://jboh1ws0q711" path="res://assets/health.png" id="14_jcod8"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_6uxhh"]
-font_size = 45
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17msj"]
+texture = ExtResource("3_wy52q")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, -48, 48, 48, 48, 48, -48)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fmvj"]
-content_margin_top = 60.0
-content_margin_bottom = 60.0
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_64oqj"]
+texture = ExtResource("4_lmcrw")
+texture_region_size = Vector2i(96, 96)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-48, -48, -48, 48, 48, 48, 48, -48)
 
-[sub_resource type="LabelSettings" id="LabelSettings_rwdr3"]
+[sub_resource type="TileSet" id="TileSet_smiyj"]
+tile_size = Vector2i(96, 96)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_17msj")
+sources/1 = SubResource("TileSetAtlasSource_64oqj")
+
+[sub_resource type="Curve" id="Curve_63vgx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.139159, 0.966365), 1.29916, 1.29916, 0, 0, Vector2(0.378641, 0.646831), -3.2479, -3.2479, 0, 0, Vector2(0.9869, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ew7yq"]
+curve = SubResource("Curve_63vgx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdk6y"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(800, 800, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.5
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_curve = SubResource("CurveTexture_ew7yq")
+color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npsur"]
+size = Vector2(500, 9000)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7c0i3"]
+size = Vector2(3000, 18000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x2xm"]
+size = Vector2(9000, 500)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gpvpv"]
+size = Vector2(18000, 3000)
+
+[sub_resource type="QuadMesh" id="QuadMesh_n64p2"]
+size = Vector2(9000, 9000)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ypih2"]
+line_spacing = 0.0
+font_size = 28
+font_color = Color(1, 1, 1, 0.87451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jsmoc"]
+font_size = 26
+font_color = Color(1, 0.291398, 0.303508, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tt0sa"]
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_se3fl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/WaveText:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tvk3j"]
+resource_name = "wave_text_show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/WaveText:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 0.933333),
+"transitions": PackedFloat32Array(0.31864, 1.68179, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3yuj"]
+_data = {
+"RESET": SubResource("Animation_se3fl"),
+"wave_text_show": SubResource("Animation_tvk3j")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3cjh"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.109804, 0.109804, 0.109804, 0.588235)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ip6j"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_1kop4"]
+font_size = 24
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_axryq"]
+color = Color(0.145068, 0.155149, 0.140044, 1)
+grow_begin = -10.0
+grow_end = -10.0
+thickness = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vthe"]
+font_size = 20
+font_color = Color(0.74978, 0.74978, 0.74978, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hauc1"]
 font_size = 48
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("menu", "currency", "ship", "camera")]
-script = ExtResource("1_lqwsb")
-menu = NodePath("UI/MarginContainer/VBoxContainer/Menu")
-currency = NodePath("UI/MarginContainer/VBoxContainer/Currency")
-ship = NodePath("Ship")
-camera = NodePath("Camera2D")
+[sub_resource type="LabelSettings" id="LabelSettings_4lej2"]
+font_size = 28
 
-[node name="Zone0" parent="." instance=ExtResource("5_mx5he")]
-position = Vector2(360, -407)
+[sub_resource type="LabelSettings" id="LabelSettings_vj7d5"]
+font_size = 40
+font_color = Color(0.940211, 0, 0.0117968, 1)
+
+[sub_resource type="Animation" id="Animation_rqtyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Up:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Down:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yub0o"]
+resource_name = "show_game_over"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Up:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.329877, 1),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Down:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.307786, 1),
+"update": 0,
+"values": [Vector2(0, 300), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_da84t"]
+_data = {
+"RESET": SubResource("Animation_rqtyc"),
+"show_game_over": SubResource("Animation_yub0o")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5uti"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_1m4n4"]
+font_size = 18
+
+[sub_resource type="Animation" id="Animation_kdnlp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Control/WASD:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(850, 511)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/Control2/WASD:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 58)]
+}
+
+[sub_resource type="Animation" id="Animation_pygoq"]
+resource_name = "show_wasd"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Control/WASD:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 0.8),
+"transitions": PackedFloat32Array(0.378929, 2.07053, 1),
+"update": 0,
+"values": [Vector2(0, 200), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/Control2/WASD:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(0.378929, 2.07053, 1),
+"update": 0,
+"values": [Vector2(0, 250), Vector2(0, 20), Vector2(0, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ypp8t"]
+_data = {
+"RESET": SubResource("Animation_kdnlp"),
+"show_wasd": SubResource("Animation_pygoq")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("ship", "wave_timer", "wave_progress", "wave_label", "enemies_label", "boss_progress", "boss_container", "boss_label", "sea_particles", "ui", "choose", "game_over", "game_over_label", "result", "rewards", "ui_animation", "wave_text", "game_over_animation", "wasd", "tutorial_animation", "pause")]
+process_mode = 3
+script = ExtResource("1_lqwsb")
+ship = NodePath("Ship")
+wave_timer = NodePath("WaveTimer")
+wave_progress = NodePath("UI/MarginContainer/HBoxContainer/TextureProgressBar")
+wave_label = NodePath("UI/MarginContainer/HBoxContainer/VBoxContainer/Wave")
+enemies_label = NodePath("UI/MarginContainer/HBoxContainer/VBoxContainer/Enemies")
+boss_progress = NodePath("UI/MarginContainer/HBoxContainer2/VBoxContainer/TextureProgressBar")
+boss_container = NodePath("UI/MarginContainer/HBoxContainer2")
+boss_label = NodePath("UI/MarginContainer/HBoxContainer2/VBoxContainer/Boss")
+sea_particles = NodePath("SeaParticles")
+ui = NodePath("UI")
+choose = NodePath("Choose")
+game_over = NodePath("GameOver")
+game_over_label = NodePath("GameOver/Down/VBoxContainer/GameOver")
+result = NodePath("GameOver/Down/VBoxContainer/Result")
+rewards = NodePath("Choose/MarginContainer/VBoxContainer/Rewards")
+ui_animation = NodePath("UI/AnimationPlayer")
+wave_text = NodePath("UI/Control/WaveText")
+game_over_animation = NodePath("GameOver/AnimationPlayer")
+wasd = NodePath("Tutorial/MarginContainer/Control/WASD")
+tutorial_animation = NodePath("Tutorial/AnimationPlayer")
+pause = NodePath("Pause/MarginContainer/PanelContainer")
+waves = ExtResource("2_a0mvw")
 
 [node name="Ship" type="Node2D" parent="."]
-position = Vector2(24, 232)
+process_mode = 1
+z_index = 1
 script = ExtResource("2_ng08c")
 
-[node name="Obstacle" parent="." instance=ExtResource("3_777bt")]
-visible = false
-position = Vector2(125, 213)
-texture = ExtResource("4_8v7wk")
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["obstacle"]]
+process_mode = 1
+tile_map_data = PackedByteArray("AAAkAPv/AAAAAAAAAAAlAPv/AAAAAAAAAAAlAPz/AAAAAAAAAAAmAPz/AAAAAAAAAAAmAP3/AAAAAAAAAAAnAPz/AQAAAAAAAAAnAP3/AAAAAAAAAAAoAPj/AAAAAAAAAAAoAPn/AQAAAAAAAAAoAPr/AQAAAAAAAAAoAPv/AQAAAAAAAAAoAPz/AQAAAAAAAAAoAP3/AQAAAAAAAAApAPj/AAAAAAAAAAApAPn/AAAAAAAAAAApAPr/AQAAAAAAAAApAPv/AQAAAAAAAAApAPz/AQAAAAAAAAApAP3/AAAAAAAAAAAqAPn/AAAAAAAAAAAqAPr/AAAAAAAAAAAqAPv/AAAAAAAAAAAqAPz/AAAAAAAAAAAqAP3/AAAAAAAAAADk/xUAAAAAAAAAAADl/xQAAAAAAAAAAADl/xUAAAAAAAAAAADl/xYAAAAAAAAAAADm/xQAAAAAAAAAAADm/xUAAQAAAAAAAADn/xMAAAAAAAAAAADn/xQAAQAAAAAAAADn/xUAAQAAAAAAAADo/xIAAAAAAAAAAADo/xMAAQAAAAAAAADo/xQAAQAAAAAAAADo/xUAAQAAAAAAAADp/xIAAAAAAAAAAADp/xMAAAAAAAAAAADp/xQAAQAAAAAAAADq/xMAAAAAAAAAAADq/xQAAAAAAAAAAADq/xUAAAAAAAAAAAAoAP7/AAAAAAAAAAAnAP7/AAAAAAAAAAAtAAkAAAAAAAAAAAAsAAoAAAAAAAAAAAAsAAsAAAAAAAAAAAAsAAwAAAAAAAAAAAAsAA0AAAAAAAAAAAAtAA0AAAAAAAAAAAAuAA0AAAAAAAAAAAAvAA0AAAAAAAAAAAAvAAwAAAAAAAAAAAAvAAsAAQAAAAAAAAAvAAoAAQAAAAAAAAAuAAoAAQAAAAAAAAAtAAoAAAAAAAAAAAAtAAsAAQAAAAAAAAAuAAsAAQAAAAAAAAAuAAwAAQAAAAAAAAAtAAwAAAAAAAAAAAAwAAkAAAAAAAAAAAAxAAkAAAAAAAAAAAAyAAkAAAAAAAAAAAAyAAgAAAAAAAAAAAAxAAgAAAAAAAAAAAAwAAgAAAAAAAAAAAAwAAoAAQAAAAAAAAAwAAsAAAAAAAAAAAAwAAwAAAAAAAAAAAAvAAkAAAAAAAAAAAAfAB4AAAAAAAAAAAAfAB8AAAAAAAAAAAAgAB8AAAAAAAAAAAAgAB4AAAAAAAAAAAAhAB8AAQAAAAAAAAAiAB8AAQAAAAAAAAAjAB8AAAAAAAAAAAAjACAAAAAAAAAAAAAkACEAAAAAAAAAAAAkACAAAAAAAAAAAAAkAB8AAAAAAAAAAAAkAB4AAAAAAAAAAAAjAB4AAAAAAAAAAAAiAB4AAQAAAAAAAAAiAB0AAAAAAAAAAAAiABwAAAAAAAAAAAAhAB0AAAAAAAAAAAAhAB4AAQAAAAAAAAAgAB0AAAAAAAAAAADy/ykAAQAAAAAAAADz/ykAAQAAAAAAAAD0/ykAAAAAAAAAAAD1/ykAAAAAAAAAAAD1/ygAAAAAAAAAAAD2/ygAAAAAAAAAAAD2/ykAAAAAAAAAAAD2/yoAAAAAAAAAAAD1/yoAAAAAAAAAAAD0/ygAAAAAAAAAAADz/ygAAQAAAAAAAADz/ycAAQAAAAAAAAD0/ycAAAAAAAAAAAD1/ycAAAAAAAAAAAD1/yYAAAAAAAAAAAD1/yUAAAAAAAAAAADw//v/AAAAAAAAAADx//v/AAAAAAAAAADy//v/AAAAAAAAAADy//r/AAAAAAAAAADx//r/AAAAAAAAAADx//n/AAAAAAAAAADw//n/AAAAAAAAAADv//n/AAAAAAAAAADu//n/AQAAAAAAAADt//r/AQAAAAAAAADt//v/AQAAAAAAAADu//v/AQAAAAAAAADv//v/AQAAAAAAAADv//r/AQAAAAAAAADu//r/AQAAAAAAAADw//r/AAAAAAAAAADv//z/AAAAAAAAAADv//3/AAAAAAAAAADw//z/AAAAAAAAAADu//z/AAAAAAAAAADt//n/AQAAAAAAAADs//r/AQAAAAAAAADs//n/AQAAAAAAAADy/ygAAQAAAAAAAADz/yoAAQAAAAAAAADy/yoAAQAAAAAAAADx/yoAAQAAAAAAAAAhACAAAQAAAAAAAAAiACAAAQAAAAAAAAAgACAAAQAAAAAAAAAfACAAAQAAAAAAAAAfACEAAQAAAAAAAAAgACEAAQAAAAAAAAAhACEAAQAAAAAAAAAfACIAAQAAAAAAAAAeACEAAQAAAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_smiyj")
+use_kinematic_bodies = true
+collision_visibility_mode = 1
 
-[node name="Obstacle2" parent="." instance=ExtResource("3_777bt")]
-visible = false
-position = Vector2(529, 293)
-texture = ExtResource("4_8v7wk")
+[node name="SeaParticles" type="GPUParticles2D" parent="."]
+process_mode = 1
+z_index = -2
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_cdk6y")
+texture = ExtResource("6_tj1vd")
+lifetime = 6.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(360, 640)
-zoom = Vector2(0.5, 0.5)
-process_callback = 0
-position_smoothing_enabled = true
+[node name="Walls" type="StaticBody2D" parent="."]
+process_mode = 1
+z_index = -3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-4750, 0)
+shape = SubResource("RectangleShape2D_npsur")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Walls/CollisionShape2D"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+position = Vector2(-1250, 0)
+mesh = SubResource("QuadMesh_7c0i3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(4750, 0)
+shape = SubResource("RectangleShape2D_npsur")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Walls/CollisionShape2D2"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+position = Vector2(1250, 0)
+mesh = SubResource("QuadMesh_7c0i3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 4750)
+shape = SubResource("RectangleShape2D_4x2xm")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Walls/CollisionShape2D3"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+position = Vector2(0, 1250)
+mesh = SubResource("QuadMesh_gpvpv")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -4750)
+shape = SubResource("RectangleShape2D_4x2xm")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Walls/CollisionShape2D4"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+position = Vector2(0, -1250)
+mesh = SubResource("QuadMesh_gpvpv")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Walls"]
+modulate = Color(0.0470588, 0.0470588, 0.0470588, 1)
+z_index = -1
+position = Vector2(-32, 25)
+mesh = SubResource("QuadMesh_n64p2")
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 1
+layer = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
@@ -59,67 +405,377 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 30
 
-[node name="Currency" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/HBoxContainer"]
 layout_mode = 2
+max_value = 40.0
+value = 40.0
+fill_mode = 4
+texture_progress = ExtResource("3_wrqe7")
 
-[node name="Money" type="Label" parent="UI/MarginContainer/VBoxContainer/Currency"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Монеты: 100"
-label_settings = SubResource("LabelSettings_6uxhh")
+theme_override_constants/separation = -5
+
+[node name="Wave" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Wave 1"
+label_settings = SubResource("LabelSettings_ypih2")
+
+[node name="Enemies" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "8 enemies left"
+label_settings = SubResource("LabelSettings_jsmoc")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/HBoxContainer2/VBoxContainer"]
+modulate = Color(1, 0.0158282, 0.410683, 1)
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("8_b580b")
+
+[node name="Boss" type="Label" parent="UI/MarginContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Boss"
+label_settings = SubResource("LabelSettings_jsmoc")
+horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveText" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.5
+offset_top = -170.0
+offset_right = 160.5
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 22)
+text = "
+"
+label_settings = SubResource("LabelSettings_tt0sa")
 horizontal_alignment = 1
 
-[node name="Exp" type="Label" parent="UI/MarginContainer/VBoxContainer/Currency"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Опыт: 50"
-label_settings = SubResource("LabelSettings_6uxhh")
-horizontal_alignment = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_w3yuj")
+}
 
-[node name="Container" type="Container" parent="UI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 1
+layer = 4
 
-[node name="Menu" type="MarginContainer" parent="UI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="MarginContainer" type="MarginContainer" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer/Menu"]
+[node name="PanelContainer" type="PanelContainer" parent="Pause/MarginContainer"]
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3cjh")
+
+[node name="Settings" type="VBoxContainer" parent="Pause/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Pause/MarginContainer/PanelContainer/Settings"]
 layout_mode = 2
 size_flags_vertical = 0
-
-[node name="Ship" type="Button" parent="UI/MarginContainer/VBoxContainer/Menu/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 38
-text = "Корабль"
-
-[node name="Chests" type="Button" parent="UI/MarginContainer/VBoxContainer/Menu/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 38
-text = "Сундуки"
-
-[node name="Shop" type="Button" parent="UI/MarginContainer/VBoxContainer/Menu/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 38
-text = "Магазин"
-
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/Menu"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7fmvj")
-text = "Нажмите, чтобы начать"
-label_settings = SubResource("LabelSettings_rwdr3")
+text = "Pause"
+label_settings = SubResource("LabelSettings_5ip6j")
 horizontal_alignment = 1
 
-[connection signal="gui_input" from="UI/MarginContainer/VBoxContainer/Container" to="." method="_on_play_gui_input"]
-[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Menu/HBoxContainer/Ship" to="." method="_on_ship_pressed"]
-[connection signal="gui_input" from="UI/MarginContainer/VBoxContainer/Menu/Label" to="." method="_on_play_gui_input"]
+[node name="Music" type="Label" parent="Pause/MarginContainer/PanelContainer/Settings"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_1kop4")
+
+[node name="MusicSlider" type="HSlider" parent="Pause/MarginContainer/PanelContainer/Settings"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("9_kjt1v")
+theme_override_icons/grabber_highlight = ExtResource("9_kjt1v")
+theme_override_styles/slider = SubResource("StyleBoxLine_axryq")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("10_57g0s")
+bus_name = "Music"
+
+[node name="SFX" type="Label" parent="Pause/MarginContainer/PanelContainer/Settings"]
+layout_mode = 2
+text = "SFX"
+label_settings = SubResource("LabelSettings_1kop4")
+
+[node name="SFXSlider" type="HSlider" parent="Pause/MarginContainer/PanelContainer/Settings"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("9_kjt1v")
+theme_override_icons/grabber_highlight = ExtResource("9_kjt1v")
+theme_override_styles/slider = SubResource("StyleBoxLine_axryq")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("10_57g0s")
+bus_name = "SFX"
+
+[node name="Label2" type="Label" parent="Pause/MarginContainer/PanelContainer/Settings"]
+layout_mode = 2
+text = "Tap ESC to continue"
+label_settings = SubResource("LabelSettings_8vthe")
+horizontal_alignment = 1
+
+[node name="Choose" type="CanvasLayer" parent="."]
+process_mode = 1
+layer = 5
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="Choose"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Choose/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Label" type="Label" parent="Choose/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Choose your reward"
+label_settings = SubResource("LabelSettings_hauc1")
+horizontal_alignment = 1
+
+[node name="Rewards" type="HBoxContainer" parent="Choose/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Reward" parent="Choose/MarginContainer/VBoxContainer/Rewards" instance=ExtResource("9_e8ll6")]
+layout_mode = 2
+
+[node name="Reward2" parent="Choose/MarginContainer/VBoxContainer/Rewards" instance=ExtResource("9_e8ll6")]
+layout_mode = 2
+
+[node name="Reward3" parent="Choose/MarginContainer/VBoxContainer/Rewards" instance=ExtResource("9_e8ll6")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Choose/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tip: More points give rarer rewards"
+label_settings = SubResource("LabelSettings_4lej2")
+horizontal_alignment = 1
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+process_mode = 1
+layer = 5
+visible = false
+
+[node name="Up" type="TextureRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_fciqf")
+expand_mode = 1
+
+[node name="Down" type="TextureRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qawlb")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/Down"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 471.0
+offset_right = 560.0
+offset_bottom = 634.0
+rotation = 0.0584685
+
+[node name="GameOver" type="Label" parent="GameOver/Down/VBoxContainer"]
+layout_mode = 2
+text = "Crashed by zombies!"
+label_settings = SubResource("LabelSettings_vj7d5")
+
+[node name="Result" type="RichTextLabel" parent="GameOver/Down/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "Waves survived: 3 [color=dark gray] x10 [/color]
+Zombies killed: 36
+Combo bonus: 100
+[b]Score: 436[/b]"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="Continue" type="TextureButton" parent="GameOver/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("11_mu83j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_da84t")
+}
+
+[node name="WaveTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 40.0
+one_shot = true
+
+[node name="HealTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 30.0
+autostart = true
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+process_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 180
+
+[node name="Control" type="Control" parent="Tutorial/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="WASD" type="PanelContainer" parent="Tutorial/MarginContainer/Control"]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 511.0
+offset_right = 1198.0
+offset_bottom = 645.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5uti")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Control/WASD"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Control/WASD/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_0tx55")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Control/WASD/HBoxContainer"]
+layout_mode = 2
+text = "W/S - Forward/Back
+A/D - Left/Right
+Mouse wheel - zoom"
+label_settings = SubResource("LabelSettings_1m4n4")
+
+[node name="Control2" type="Control" parent="Tutorial/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="WASD" type="PanelContainer" parent="Tutorial/MarginContainer/Control2"]
+layout_mode = 0
+offset_top = 58.0
+offset_right = 393.0
+offset_bottom = 134.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5uti")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tutorial/MarginContainer/Control2/WASD"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial/MarginContainer/Control2/WASD/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_jcod8")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Tutorial/MarginContainer/Control2/WASD/HBoxContainer"]
+layout_mode = 2
+text = "Use heal for repair all blocks (+1)"
+label_settings = SubResource("LabelSettings_1m4n4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial"]
+libraries = {
+"": SubResource("AnimationLibrary_ypp8t")
+}
+
+[connection signal="pressed" from="GameOver/MarginContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvu2smr0wprpu"]
+
+[ext_resource type="Script" path="res://src/editor/item/block.gd" id="1_viwpa"]
+[ext_resource type="Texture2D" uid="uid://d3hr83kf0j77p" path="res://assets/wood_slope.png" id="2_hhn8n"]
+[ext_resource type="AudioStream" uid="uid://fijmo87eolk1" path="res://assets/music/Wood break 1.mp3" id="3_uahlq"]
+[ext_resource type="AudioStream" uid="uid://do48n01demloh" path="res://assets/music/Wood break 2.mp3" id="4_qiwv1"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0qw3f"]
+points = PackedVector2Array(-48, 48, 48, -48, 48, 48)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_1c7fx"]
+points = PackedVector2Array(-64, 54, 54, -64, 54, 54)
+
+[node name="WoodSlope" type="CollisionShape2D" node_paths=PackedStringArray("sprite", "hitbox")]
+shape = SubResource("ConvexPolygonShape2D_0qw3f")
+script = ExtResource("1_viwpa")
+sprite = NodePath("Sprite2D")
+hitbox = NodePath("HitBox")
+strength = 5
+connections = Array[int]([2, 3])
+visual_name = "Wood Slope"
+rare_max_count = 4
+epic_max_count = 9
+id = "wood_slope"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hhn8n")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("ConvexPolygonShape2D_1c7fx")
+
+[node name="Break1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uahlq")
+volume_db = -12.0
+bus = &"SFX"
+
+[node name="Break2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qiwv1")
+volume_db = -12.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]

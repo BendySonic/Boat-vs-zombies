@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8kic26bxy7oy"]
+
+[ext_resource type="Script" path="res://src/editor/item/block.gd" id="1_xkoa2"]
+[ext_resource type="Texture2D" uid="uid://c452l632h5qru" path="res://assets/wood.png" id="2_ycvie"]
+[ext_resource type="AudioStream" uid="uid://fijmo87eolk1" path="res://assets/music/Wood break 1.mp3" id="3_ui06n"]
+[ext_resource type="AudioStream" uid="uid://do48n01demloh" path="res://assets/music/Wood break 2.mp3" id="4_j8562"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4falr"]
+size = Vector2(96, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_whm10"]
+custom_solver_bias = 1.0
+size = Vector2(110, 110)
+
+[node name="Wood" type="CollisionShape2D" node_paths=PackedStringArray("sprite", "hitbox")]
+shape = SubResource("RectangleShape2D_4falr")
+script = ExtResource("1_xkoa2")
+sprite = NodePath("Sprite2D")
+hitbox = NodePath("HitBox")
+strength = 10
+connections = Array[int]([1, 2, 3, 4])
+visual_name = "Wood"
+rare_max_count = 3
+epic_max_count = 11
+id = "wood"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ycvie")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_whm10")
+
+[node name="Break1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ui06n")
+volume_db = -12.0
+bus = &"SFX"
+
+[node name="Break2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_j8562")
+volume_db = -12.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
